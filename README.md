@@ -1,0 +1,2 @@
+# Patterns learning
+тренинг паттернов
