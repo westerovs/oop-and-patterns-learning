@@ -30,7 +30,7 @@ export default class Lang {
       this.btnRu.classList.remove('is-active')
       this.btnEn.classList.add('is-active')
     }
-  
+    
     this.rowLang.dispatchEvent(new CustomEvent('change-lang', {
       bubbles: true,
       detail: {
@@ -41,7 +41,11 @@ export default class Lang {
   
   init = () => {
     this.setInitLang()
+    
     this.rowLang.addEventListener('pointerdown', this.rowLangHandler)
+    this.rowLang.addEventListener('keydown', (event) => {
+      if (event.code === 'Space') this.rowLangHandler(event)
+    })
   }
 }
 new Lang().init()
