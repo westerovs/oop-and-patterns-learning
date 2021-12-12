@@ -10,7 +10,7 @@ const messageChat = push('Новое сообщение в чате !')
 
 observable.add(messageNew)
 observable.add(messageChat)
-observable.remove(messageNew)
+// observable.remove(messageNew)
 
 const button = document.querySelector('.button')
 button.addEventListener('click', () => observable.notify())

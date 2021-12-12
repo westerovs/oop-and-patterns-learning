@@ -4,7 +4,7 @@ export default class Observer {
         this.news = ''
         this.subscribers = [] // массив подписчиков
     }
-    
+
     // принимает строковое значение новости
     setNews(text) {
         this.news = text
