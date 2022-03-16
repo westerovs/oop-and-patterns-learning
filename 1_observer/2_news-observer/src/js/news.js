@@ -1,28 +1,27 @@
-import Observer from './observer.js'
+import Observer from './abstract/observer.js'
 import Gleb from './users/gleb.js'
 import Paul from './users/paul.js'
 
-class News extends Observer{
-    constructor() {
-        super()
-        this.newsText = document.querySelector('.news-text')
-    }
-    
-    createNews() {
-        this.newsText.innerHTML = this.news
-    }
+class News extends Observer {
+  constructor() {
+    super()
+    this.newsText = document.querySelector('.news-text')
+  }
+  
+  createNews() {
+    this.newsText.innerHTML = this.news
+  }
 }
 
 const autoNews = new News()
+const textNews = 'Hello Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae consectetur Mур'
 
-// create users
-const ivan = new Paul()
-const gleb = new Gleb()
+const ivan = new Paul() // create users
+autoNews.register(ivan) // register users
 
-// register users
-autoNews.register(ivan)
-autoNews.register(gleb)
+const gleb = new Gleb() // create users
+autoNews.register(gleb) // register users
 
-autoNews.setNews('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci beatae consectetur ipsa')
+autoNews.setNews(textNews)
 autoNews.createNews()
 

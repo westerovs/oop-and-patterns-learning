@@ -23,6 +23,7 @@ const openTask = (e) => {
     console.log('open task')
 }
 
+// вызывает цикл по всем картам и проверяет на наличие открытой
 const closeCard = () => {
     console.log('close card')
     
