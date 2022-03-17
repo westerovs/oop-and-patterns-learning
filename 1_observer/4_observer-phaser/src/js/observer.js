@@ -1,32 +1,26 @@
-// observer
-export default class Observer {
-    constructor() {
-        this.news = ''
-        this.subscribers = [] // массив подписчиков
-    }
-
-    // принимает строковое значение новости
-    setNews(text) {
-        this.news = text
-        this.notifyAll()
-    }
+export const observer = {
+    // ключ в котором хранятся observer`Ы (т.е слушатели)
+    _observers: [],
     
-    notifyAll() {
-        /* проходит по массивам подписчиков и вызывает метод inform
-         внутрь которого передаёт контекст this
-         this нужен для того, что бы внутри класса подписчика, у него был доступ
-         к свойству news
-        */
-        return this.subscribers.forEach(item => item.inform(this))
-    }
+    // метод добавляющий слушателей
+    addObserver(cb) {
+        this._observers.push(cb)
+    },
     
-    // подписка
-    register(observer) {
-        this.subscribers.push(observer)
-    }
+    // метод уведомляющий всех
+    notify() {
+        this._observers.forEach(item => item())
+    },
     
-    // отписка
-    unregister(observer) {
-        this.subscribers = this.subscribers.filter(item => !(item instanceof observer))
-    }
+    // метод удаляющий слушателей
+    removeObserver(cb) {
+        this._observers = this._observers.filter(item => item !== cb)
+    },
 }
+
+// const func1 = () => console.log('function 1')
+// const func2 = () => console.log('function 2')
+//
+// observer.addObserver(func1)
+// observer.addObserver(func2)
+//

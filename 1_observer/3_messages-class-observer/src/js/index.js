@@ -1,12 +1,14 @@
-import messageView from './message.js'
-import abstractObservable  from './observable.js'
+import messageView from './components/message.js'
+import Observable  from './abstract/observable.js'
 
-const observable = new abstractObservable()
+const observable = new Observable()
 
-const push = (text) => () => new messageView().create(text)
+const pushText = (text) => {
+  return () => new messageView().create(text)
+}
 
-const messageNew = push('New message !')
-const messageChat = push('Новое сообщение в чате !')
+const messageNew  = pushText('New message !')
+const messageChat = pushText('Новое сообщение в чате !')
 
 observable.add(messageNew)
 observable.add(messageChat)
